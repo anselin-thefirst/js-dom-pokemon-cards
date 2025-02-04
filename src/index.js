@@ -5,6 +5,11 @@ function renderCards() {
     cardsUL.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         const card = data[i]
+        const images = [
+            card.sprites.other["official-artwork"].front_default,
+            card.sprites.back_default
+        ]
+
         const cardLi = document.createElement('li')
         cardLi.setAttribute('class', 'card')
 
@@ -16,9 +21,14 @@ function renderCards() {
         // pokemon image
         const cardImg = document.createElement('img')
         cardImg.setAttribute('class','card--img')
-        cardImg.src = card.sprites.other["official-artwork"].front_default;
+        cardImg.src = images[0];
         cardImg.width = 256;
-        cardImg.onmouseover
+        cardImg.onmouseover = function(){
+            cardImg.src = images[1];
+        }
+        cardImg.onmouseleave = function(){
+            cardImg.src = images[0];
+        }
 
         // pokemon stats
         const cardText = document.createElement('ul')
