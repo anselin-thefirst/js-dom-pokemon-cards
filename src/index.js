@@ -38,7 +38,7 @@ function renderCards() {
         appearance.setAttribute('class', 'card--text')
         for (let i = 0; i < card.game_indices.length; i++) {
             const game = document.createElement('li');
-            game.textContent = card.game_indices[i].game_index + ': ' + (card.game_indices[i].version.name).toUpperCase()
+            game.textContent = (card.game_indices[i].version.name).toUpperCase()
             appearance.appendChild(game);
         }
         
