@@ -18,6 +18,7 @@ function renderCards() {
         cardImg.setAttribute('class','card--img')
         cardImg.src = card.sprites.other["official-artwork"].front_default;
         cardImg.width = 256;
+        cardImg.onmouseover
 
         // pokemon stats
         const cardText = document.createElement('ul')
@@ -27,10 +28,25 @@ function renderCards() {
             pokemonStats.textContent =  (card.stats[i].stat.name).toUpperCase() + ": " + card.stats[i].base_stat
             cardText.appendChild(pokemonStats);
         }
+
+        // pokemon appearance 
+        const appearanceTitle = document.createElement("h4");
+        appearanceTitle.setAttribute('class', 'card--text')
+        appearanceTitle.textContent = 'Appeared in:';
+
+        const appearance = document.createElement('ul')
+        appearance.setAttribute('class', 'card--text')
+        for (let i = 0; i < card.game_indices.length; i++) {
+            const game = document.createElement('li');
+            game.textContent = card.game_indices[i].game_index + ': ' + (card.game_indices[i].version.name).toUpperCase()
+            appearance.appendChild(game);
+        }
         
         cardLi.appendChild(cardTitle);
         cardLi.appendChild(cardImg);
-        cardLi.appendChild(cardText)
+        cardLi.appendChild(cardText);
+        cardLi.appendChild(appearanceTitle);
+        cardLi.appendChild(appearance);
         cardsUL.appendChild(cardLi);
     }
 }
